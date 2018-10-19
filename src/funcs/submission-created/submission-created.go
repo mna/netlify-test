@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -9,8 +11,12 @@ import (
 )
 
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	pretty.Printf("%# v\n", r.Body)
-	pretty.Printf("stage variables: %# v\n", r.StageVariables)
+	var m map[string]interface{}
+	if err := json.Unmarshal([]byte(r.Body), &m); err != nil {
+		fmt.Println(err)
+	} else {
+		pretty.Printf("%# v\n", m["payload"])
+	}
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 204,
