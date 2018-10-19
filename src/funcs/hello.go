@@ -17,7 +17,7 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 		title = lc.ClientContext.Client.AppTitle
 	}
 
-	fmt.Printf("%# v\n", pretty.Formatter(r))
+	pretty.Printf("%# v\n", r)
 
 	user := r.RequestContext.AccountID
 	path := r.Path
