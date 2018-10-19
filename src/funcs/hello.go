@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-lambda-go/lambdacontext"
+	"github.com/kr/pretty"
 )
 
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
@@ -15,6 +16,8 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 	if ok {
 		title = lc.ClientContext.Client.AppTitle
 	}
+
+	fmt.Printf("%# v\n", pretty.Formatter(r))
 
 	user := r.RequestContext.AccountID
 	path := r.Path
