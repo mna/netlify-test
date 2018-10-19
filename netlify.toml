@@ -1,7 +1,7 @@
 [build]
 base="/"
-publish="pub/"
-functions="functions/"
+publish="pub"
+functions="functions"
 command="make build"
 
 [build.environment]
