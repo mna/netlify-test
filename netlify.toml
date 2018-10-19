@@ -2,3 +2,8 @@
 base="/"
 publish="pub/"
 command="make build"
+
+[[redirects]]
+  from = "/"
+  to = "/hello.html"
+

@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Netlify Test</title>
+    <title>Netlify Test - Profile</title>
   </head>
   <body>
     <h1>Hello,</h1>
+    <p>The greeting comes from the `NETLIFY_TEST_GREET` environment variable setup in the site's settings.</p>
+    <form name="profile" netlify>
+      <p>
+        <label>Name <input type="text" name="name"></label>
+      </p>
+      <p>
+        <label>Age <input type="text" name="age"></label>
+      </p>
+      <p>
+        <label>Email <input type="email" name="email"></label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
   </body>
 </html>
