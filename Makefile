@@ -1,9 +1,9 @@
 .DEFAULT=build
 
-PUB_DIR=pub/
-TPL_DIR=src/tpl/
-BIN_DIR=functions/
-FUNC_DIR=src/funcs/
+PUB_DIR=./pub/
+TPL_DIR=./src/tpl/
+BIN_DIR=./functions/
+FUNC_DIR=./src/funcs/
 
 .PHONY: build
 build: clean build-html build-lambda
@@ -19,8 +19,8 @@ build-lambda:
 	go version
 	go env
 	go get ./...
-	go build -o $(BIN_DIR)hello $(FUNC_DIR)hello.go
-	cp --verbose $(FUNC_DIR)*.js $(BIN_DIR)
+	./scripts/build-go.sh $(FUNC_DIR) $(BIN_DIR)
+	./scripts/build-js.sh $(FUNC_DIR) $(BIN_DIR)
 
 .PHONY: clean
 clean:
