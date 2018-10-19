@@ -1,7 +1,11 @@
 [build]
 base="/"
 publish="pub/"
+functions="functions/"
 command="make build"
+
+[build.environment]
+GO_IMPORT_PATH="github.com/mna/netlify-test/src/funcs"
 
 [[redirects]]
   from = "/"
