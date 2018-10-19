@@ -17,6 +17,7 @@ build-lambda:
 	mkdir -p $(FUNC_DIR)
 	go get ./...
 	go build -o $(BIN_DIR)hello $(FUNC_DIR)hello.go
+	cp $(FUNC_DIR)*.js $(BIN_DIR)
 
 .PHONY: clean
 clean:
