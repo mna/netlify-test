@@ -9,7 +9,8 @@ import (
 )
 
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	pretty.Printf("%# v\n", r)
+	pretty.Printf("%# v\n", r.Body)
+	pretty.Printf("stage variables: %# v\n", r.StageVariables)
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 204,
