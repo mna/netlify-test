@@ -31,7 +31,7 @@ func main() {
 			continue
 		}
 
-		fmt.Println(filename)
+		fmt.Println("generating template ", filename, "...")
 		out, err := os.Create(filepath.Join(dstDir, filename))
 		if err != nil {
 			log.Fatal(err)
