@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -16,6 +17,12 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 		fmt.Println(err)
 	} else {
 		pretty.Printf("%# v\n", m["payload"])
+	}
+	for k, v := range r.Headers {
+		if strings.HasPrefix(k, "X-") {
+			continue
+		}
+		fmt.Println(k, v)
 	}
 
 	return &events.APIGatewayProxyResponse{
