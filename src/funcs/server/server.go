@@ -9,7 +9,7 @@ import (
 )
 
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	if r.Path == "/fail" {
+	if r.RequestContext.ResourcePath == "/fail" {
 		return &events.APIGatewayProxyResponse{
 			StatusCode: 400,
 			Body:       "Fail!",
@@ -17,7 +17,7 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 	}
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 200,
-		Body:       r.Path + "\n" + os.Getenv("NETLIFY_TEST_GREET"),
+		Body:       r.Resource + "\n" + r.RequestContext.ResourcePath + "\n" + r.Path + "\n" + os.Getenv("NETLIFY_TEST_GREET"),
 	}, nil
 }
 
