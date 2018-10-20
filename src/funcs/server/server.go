@@ -9,9 +9,15 @@ import (
 )
 
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
+	if r.Path == "/fail" {
+		return &events.APIGatewayProxyResponse{
+			StatusCode: 400,
+			Body:       "Fail!",
+		}, nil
+	}
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 200,
-		Body:       os.Getenv("NETLIFY_TEST_GREET"),
+		Body:       r.Path + "<br>" + os.Getenv("NETLIFY_TEST_GREET"),
 	}, nil
 }
 
