@@ -17,7 +17,7 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 	}
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 200,
-		Body:       r.Path + "<br>" + os.Getenv("NETLIFY_TEST_GREET"),
+		Body:       r.Path + "\n" + os.Getenv("NETLIFY_TEST_GREET"),
 	}, nil
 }
 
