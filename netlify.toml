@@ -1,8 +1,17 @@
 [build]
 base="/"
-publish="pub"
+publish="pub/"
 functions="functions/"
 command="make build"
 
 [build.environment]
 GO_IMPORT_PATH="github.com/mna/netlify-test"
+
+[[redirects]]
+from=/
+to=/hello.html
+
+[[redirects]]
+from=/*
+to=/.netlify/functions/server
+status=200
