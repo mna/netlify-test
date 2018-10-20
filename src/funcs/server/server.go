@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -17,7 +18,7 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 	}
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 200,
-		Body:       r.QueryStringParameters["path"] + "\n" + r.Resource + "\n" + r.RequestContext.ResourcePath + "\n" + r.Path + "\n" + os.Getenv("NETLIFY_TEST_GREET"),
+		Body:       fmt.Sprintf("%v", r.QueryStringParameters) + "\n" + r.Resource + "\n" + r.RequestContext.ResourcePath + "\n" + r.Path + "\n" + os.Getenv("NETLIFY_TEST_GREET"),
 	}, nil
 }
 
