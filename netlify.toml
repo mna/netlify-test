@@ -13,6 +13,5 @@ to="/hello.html"
 
 [[redirects]]
 from="/*"
-to="/.netlify/functions/server?path=:splat"
+to="/.netlify/functions/server/:splat"
 status=200
-force=false

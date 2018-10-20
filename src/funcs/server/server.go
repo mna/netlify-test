@@ -5,13 +5,16 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
+const funcPrefix = "/.netlify/functions/server"
+
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	path := r.QueryStringParameters["path"]
+	path := strings.TrimPrefix(r.Path, funcPrefix)
 	if path == "fail" {
 		return &events.APIGatewayProxyResponse{
 			StatusCode: 400,
