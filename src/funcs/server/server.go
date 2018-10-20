@@ -15,7 +15,7 @@ const funcPrefix = "/.netlify/functions/server"
 
 func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	path := strings.TrimPrefix(r.Path, funcPrefix)
-	if path == "fail" {
+	if path == "/fail" {
 		return &events.APIGatewayProxyResponse{
 			StatusCode: 400,
 			Body:       "Fail!",
