@@ -1,3 +1,4 @@
-/   /hello.html
-/*  /.netlify/functions/server  200
+# redirect home to hello
+/ /hello.html
+# /* /.netlify/functions/server 200
 
