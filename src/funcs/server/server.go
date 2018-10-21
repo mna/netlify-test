@@ -50,7 +50,9 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 
 	fmt.Fprintln(&body, "\nEnv Vars:")
 	envs := os.Environ()
-	fmt.Fprintf(&body, "%v\n", envs)
+	for _, v := range envs {
+		fmt.Fprintf(&body, "%v\n", v)
+	}
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 200,
