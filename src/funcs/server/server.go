@@ -48,6 +48,10 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 	fmt.Fprintln(&body, "\nIdentity:")
 	pretty.Fprintf(&body, "%#v\n", r.RequestContext.Identity)
 
+	fmt.Fprintln(&body, "\nEnv Vars:")
+	envs := os.Environ()
+	fmt.Fprintf(&body, "%v\n", envs)
+
 	return &events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body:       body.String(),
