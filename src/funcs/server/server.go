@@ -9,6 +9,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-lambda-go/lambdacontext"
 	"github.com/kr/pretty"
 )
 
@@ -52,6 +53,16 @@ func handler(ctx context.Context, r events.APIGatewayProxyRequest) (*events.APIG
 	envs := os.Environ()
 	for _, v := range envs {
 		fmt.Fprintf(&body, "%v\n", v)
+	}
+
+	lc, ok := lambdacontext.FromContext(ctx)
+	if ok {
+		fmt.Fprintln(&body, "\nLambda Context:")
+		fmt.Fprintf(&body, "AwsRequestID = %s\n", lc.AwsRequestID)
+		fmt.Fprintf(&body, "InvokedFunctionArn = %s\n", lc.InvokedFunctionArn)
+		fmt.Fprintf(&body, "ClientContext.Custom = %v\n", lc.ClientContext.Custom)
+		fmt.Fprintf(&body, "ClientContext.Env = %v\n", lc.ClientContext.Env)
+		pretty.Fprintf(&body, "ClientContext.Client = %#v\n", lc.ClientContext.Client)
 	}
 
 	return &events.APIGatewayProxyResponse{
